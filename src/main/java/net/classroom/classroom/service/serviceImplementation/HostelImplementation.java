@@ -20,15 +20,22 @@ import net.classroom.classroom.exception.ResourceNotFoundException;
 // @NoArgsConstructor
 public class HostelImplementation  implements HostelService{
 
+    //Implementin
     private final HostelRepository hostelRepository;
 
     // private final StudentRepository studentRepository;
 
     @Override
+
+    //implementing the service for creating hostel
     public HostelDto createHostelDto(HostelDto hostelDto) {
+          
+        //what to remember is that, when implementing a service we use entity
 
       StudentRoom studentRoom = HostelMapper.mapToStudentRoom(hostelDto);
+
       StudentRoom savedhostel = hostelRepository.save(studentRoom);
+
         return HostelMapper.mapToHostelDto(savedhostel);
     }
 
@@ -71,6 +78,8 @@ public HostelDto updateHostelinformation(Long userId, HostelDto hostelDto) {
 }
 
     @Override
+
+    //The service for deleting user from the database
     public void deleteHostel(Long userId) {
        
         StudentRoom stdrooms = hostelRepository.findById(userId).orElseThrow(()->
